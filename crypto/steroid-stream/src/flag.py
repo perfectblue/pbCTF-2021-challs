@@ -1,0 +1,1 @@
+flag = b"pbctf{I_hope_you_enjoyed_this_challenge_now_how_about_playing_Metroid_Dread?}"

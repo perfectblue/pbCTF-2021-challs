@@ -1,0 +1,4 @@
+-Q . CTF
+./Simpl.v
+./SimplSoln.v
+./SimplSolnCheck.v

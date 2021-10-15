@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd $SCRIPTPATH
+
+set -e
+
+rm -rf dist
+mkdir dist
+cp -r build jython lib jython.jar src dist/
+tar -acf ../dist/deploy.tar.gz dist/
+rm -rf dist

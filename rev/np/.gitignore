@@ -1,0 +1,14 @@
+lockfile
+*.o
+np
+np.debug
+compile_commands.json
+Makefile.coq.conf
+*.aux
+*.d
+obj
+nonce
+_CoqProject
+proofs
+np.dev
+dist

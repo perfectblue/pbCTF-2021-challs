@@ -1,0 +1,11 @@
+*.o
+*.sw?
+*.id?
+*.i64
+*.idb
+*.nam
+*.til
+__pycache__/
+.DS_Store
+a.out
+*.sage.py

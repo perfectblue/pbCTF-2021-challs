@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  serenity:
+    build: ./docker
+    ports:
+      - "2323:2323"
+    devices:
+      - /dev/kvm:/dev/kvm:rw

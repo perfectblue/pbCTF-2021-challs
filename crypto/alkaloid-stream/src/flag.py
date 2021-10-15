@@ -1,0 +1,1 @@
+flag = b"pbctf{super_duper_easy_brute_forcing_actually_this_one_was_made_by_mistake}"

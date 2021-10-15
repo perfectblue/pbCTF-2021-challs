@@ -1,0 +1,10 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  runner:
+    build: .
+    ports:
+      - "15900:5910"
+    env_file:
+      - ./admin-token.env
+    cap_add:
+      - CAP_SYS_ADMIN

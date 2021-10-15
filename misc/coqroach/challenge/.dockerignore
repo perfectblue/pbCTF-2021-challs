@@ -1,0 +1,12 @@
+Makefile.coq
+Makefile.coq.conf
+CoqMakefile.conf
+Dockerfile
+proof/SimplSoln.v
+**/*.aux
+**/*.vo
+**/*.vo?
+**/*.glob
+**/*.sw?
+**/*.d
+.git

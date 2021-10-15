@@ -1,0 +1,10 @@
+.deploy
+Makefile.coq
+Makefile.coq.conf
+CoqMakefile.conf
+*.aux
+*.vo
+*.vo?
+*.glob
+*.sw?
+*.d

